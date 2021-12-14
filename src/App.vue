@@ -5,7 +5,7 @@
       <p>Общая сумма: {{ total_price }}</p>
     </div>
     <div class="cards">
-      <card v-for="product in products" :key="product.id" :product="product"/>
+      <card v-for="product in products" :key="product.id" :product="product" @update-total="updateTotal"/>
     </div>
   </div>
 </template>
@@ -43,6 +43,11 @@ export default {
   name: 'App',
   components: {
     Card
+  },
+  methods: {
+    updateTotal(dataCard) {
+      this.total_count += dataCard.count; //BUG Исправить метод
+    }
   }
 }
 </script>

@@ -17,9 +17,11 @@ export default {
   methods: {
     plus: function() {
       this.count++;
+      this.$emit('update-count', { count: this.count });
     },
     minus: function() {
       if (this.count > 0) this.count--;
+      this.$emit('update-count', { count: this.count });
     }
   }
 }

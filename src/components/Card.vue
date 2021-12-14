@@ -3,7 +3,8 @@
     <h4 class="title">{{ product.name }}</h4>
     <img class="img" v-bind:src="product.img" width="150" alt="">
     <p class="price">Цена: {{ product.price }}р</p>
-    <buy/>
+    <buy @update-count="updateCount"/>
+    <p class="total">Сумма = {{ total }}</p>
   </div>
 </template>
 
@@ -12,10 +13,18 @@ import Buy from "@/components/Buy";
 
 export default {
   name: "Card",
-  components: {Buy},
+  data() {
+    return {
+      total: 0
+    }
+  },
+  components: { Buy },
   props: ['product'],
-  comments: {
-    Buy
+  methods: {
+    updateCount(buyData) {
+      this.total = buyData.count * this.product.price;
+      this.$emit('update-total', {count: buyData.count, total: this.total})
+    }
   }
 }
 </script>
