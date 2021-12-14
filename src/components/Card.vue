@@ -3,28 +3,19 @@
     <h4 class="title">{{ product.name }}</h4>
     <img class="img" v-bind:src="product.img" width="150" alt="">
     <p class="price">Цена: {{ product.price }}р</p>
-    <button class="button button_plus" @click="plus">+</button>
-    <span class="count">{{ count }}</span>
-    <button class="button button_minus" @click="minus">-</button>
+    <buy/>
   </div>
 </template>
 
 <script>
+import Buy from "@/components/Buy";
+
 export default {
   name: "Card",
+  components: {Buy},
   props: ['product'],
-  data() {
-    return {
-      count: 0
-    }
-  },
-  methods: {
-    plus: function() {
-      this.count++;
-    },
-    minus: function() {
-      if (this.count > 0) this.count--;
-    }
+  comments: {
+    Buy
   }
 }
 </script>
@@ -51,23 +42,5 @@ export default {
   .price {
     text-align: left;
     color: darkblue;
-  }
-
-  .count {
-    text-align: center;
-    color: black;
-  }
-
-  .button{
-    width: 30px;
-
-    border-radius: 10px;
-    color: white;
-  }
-  .button_plus{
-    background-color: green;
-  }
-  .button_minus{
-    background-color: red;
   }
 </style>
